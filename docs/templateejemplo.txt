@@ -2,14 +2,15 @@
 <html>
 <head>
     <title>Mi Página</title>
+
 </head>
 <body>
-    <?php include 'navbar.html'; ?>
+    <div id="navbar-container"></div>
     
-    
-    <!-- Tu contenido aquí -->
 
-    
-    <?php include 'footer.html'; ?>
+
+
+    <div id="footer-container"></div>
+    <script src="template.js"></script>
 </body>
 </html>
