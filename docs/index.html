@@ -1,207 +1,589 @@
-
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nelva Bienes Raíces - Desarrollos Inmobiliarios y otros</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Mi Página</title>
+
     <style>
-        :root {
-            --primary-color: #2C3E50;
-            --secondary-color: #E74C3C;
+
+
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .hero-section {
+        body {
+            overflow-x: hidden;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+       /* Sección Parallax Mejorada */
+        .parallax-section {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/hero-bg.jpg');
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        .parallax-bg iframe {
+            width: 100vw;
+            height: 56.25vw;
+            min-height: 100vh;
+            min-width: 177.77vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .parallax-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            z-index: -1;
+        }
+
+        .parallax-content {
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 1;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .parallax-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .parallax-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .highlight {
+            color: #3a7bd5;
+            font-weight: 700;
+        }
+
+        /* Sección de estadísticas */
+        .stats-section {
+            background-color: white;
+            padding: 100px 20px;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.5s ease;
+            perspective: 1000px;
+            cursor: pointer;
+            position: relative;
+            height: 200px;
+        }
+
+        .stat-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .stat-card:hover .stat-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .stat-card-front, .stat-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stat-card-front {
+            background-color: white;
+            color: #333;
+        }
+
+        .stat-card-back {
+            background-color: #3a7bd5;
+            color: white;
+            transform: rotateY(180deg);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .stat-card h3 {
+            font-size: 1.8rem;
+            color: #3a7bd5;
+        }
+
+        .stat-card-back p {
+            font-size: 0.9rem;
+        }
+
+        /* Sección de proyectos */
+        .projects-section {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 100px 20px;
+        }
+
+        .projects-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .projects-section p.subtitle {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            opacity: 0.8;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            transition: all 0.5s ease;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            color: white;
+        }
+
+        /* Sección turística */
+        .tourist-section {
+            padding: 100px 20px;
+            position: relative;
             background-size: cover;
             background-position: center;
             color: white;
+            text-align: center;
         }
 
-        .navbar {
-            background-color: rgba(44, 62, 80, 0.9) !important;
+        .tourist-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
         }
 
-        .feature-card {
-            transition: transform 0.3s ease;
-            border: none;
+        .tourist-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .tourist-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* Sección de pasos */
+        .steps-section {
+            background-color: white;
+            padding: 100px 20px;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid #eee;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* Sección de promociones */
+        .promo-section {
+            padding: 100px 20px;
+            background-color: #f5f7fa;
+        }
+
+        .promo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .promo-card {
+            background: white;
             border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
         }
 
-        .feature-card:hover {
-            transform: translateY(-10px);
+        .promo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .development-section {
-            background-color: #f8f9fa;
-            padding: 80px 0;
+        .promo-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
         }
 
-        .cta-section {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 60px 0;
+        .promo-card-content {
+            padding: 20px;
         }
 
-        .footer {
-            background-color: #1a252f;
-            color: white;
-            padding: 40px 0;
+        /* Animaciones */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .social-icons i {
-            font-size: 24px;
-            margin: 0 10px;
-            color: white;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .parallax-content h1 {
+                font-size: 2.5rem;
+            }
 
-        .btn-primary:hover {
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
+            .parallax-content p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .stat-card {
+                height: 180px;
+            }
         }
     </style>
+
+
+    </style>
+
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div id="navbar-container"></div>
+    
+
+    <!-- Sección Parallax Mejorada -->
+    <section class="parallax-section">
+        <div class="parallax-bg">
+            <iframe width="100%" height="100%" 
+                    src="https://www.youtube.com/embed/JyQgWZVuCAw?autoplay=1&mute=1&loop=1&controls=0&playlist=JyQgWZVuCAw" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+        </div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+            <h1>TODO LO QUE NECESITAS PARA <span class="highlight">TUS PROYECTOS</span> EN UN SOLO LUGAR</h1>
+            <p>Ya sea que busques INVERTIR en terrenos cerca de los destinos turísticos más hermosos de Oaxaca, servicios profesionales de topografía o renta de equipo de maquinaria especializada, estamos aquí para ayudarte.</p>
+            <a href="#contact" class="btn">Contactar con un asesor</a>
+        </div>
+    </section>
+
+
+
+
+    <!-- Sección de Estadísticas -->
+    <section class="stats-section">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="/images/logo.png" alt="Nelva Bienes Raíces" height="40">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#inicio">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#desarrollos">Desarrollos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#nosotros">Nosotros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contacto">Contacto</a>
-                    </li>
-                </ul>
+            <h2 class="text-center">Nuestra Experiencia Habla por Nosotros</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-card-inner">
+                        <div class="stat-card-front">
+                            <h3>Más de 6 años de experiencia</h3>
+                        </div>
+                        <div class="stat-card-back">
+                            <p>En Nelva Bienes Raíces, ofrecemos confianza y calidad en la venta de terrenos, topografía, renta de equipos y construcción, siempre cerca de los mejores destinos turísticos de Oaxaca.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-inner">
+                        <div class="stat-card-front">
+                            <h3>1000+ Clientes satisfechos</h3>
+                        </div>
+                        <div class="stat-card-back">
+                            <p>Más de 1000 personas han confiado en nuestra experiencia para invertir en terrenos y convertir sus sueños en proyectos reales.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-inner">
+                        <div class="stat-card-front">
+                            <h3>Más de 20 desarrollos</h3>
+                        </div>
+                        <div class="stat-card-back">
+                            <p>Ofrecemos más de seis desarrollos estratégicos, ideales para invertir y construir cerca de los destinos turísticos más exclusivos de Oaxaca.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-inner">
+                        <div class="stat-card-front">
+                            <h3>100+ valores de cinco estrellas</h3>
+                        </div>
+                        <div class="stat-card-back">
+                            <p>Nuestra calidad y compromiso han sido reconocidos por más de 100 clientes satisfechos, respaldando cada proyecto con excelencia.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
+    </section>
 
-    <!-- Hero Section -->
-    <section class="hero-section d-flex align-items-center" id="inicio">
+    <!-- Sección de Proyectos -->
+    <section class="projects-section">
         <div class="container text-center">
-            <h1 class="display-3 mb-4">Construye tu futuro con Nelva Bienes Raíces</h1>
-            <p class="lead mb-4">Desarrollos exclusivos en las mejores ubicaciones</p>
-            <a href="#contacto" class="btn btn-primary btn-lg">Conoce nuestros terrenos</a>
+            <h2>¿Dónde invertir?</h2>
+            <p class="subtitle">Descubre nuestros proyectos con terrenos diseñados para tus necesidades. Calidad, ubicación estratégica y asesoría personalizada para tu hogar o inversión ideal.</p>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proyecto 1">
+                    <div class="project-card-overlay">
+                        <h3>Fraccionamiento Las Dunas</h3>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proyecto 2">
+                    <div class="project-card-overlay">
+                        <h3>Villas del Pacífico</h3>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proyecto 3">
+                    <div class="project-card-overlay">
+                        <h3>Residencial Santa Fe</h3>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Desarrollos Section -->
-    <section class="development-section" id="desarrollos">
+    <!-- Sección Turística -->
+    <section class="tourist-section" style="background-image: url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
         <div class="container">
-            <h2 class="text-center mb-5">Nuestros Desarrollos</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card feature-card">
-                        <img src="/images/desarrollo1.jpg" class="card-img-top" alt="Desarrollo 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Residencial Las Palmas</h5>
-                            <p class="card-text">Terrenos exclusivos con amenidades de primer nivel.</p>
-                            <a href="#" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card feature-card">
-                        <img src="/images/desarrollo2.jpg" class="card-img-top" alt="Desarrollo 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Valle Real</h5>
-                            <p class="card-text">Lotes residenciales en zona privilegiada.</p>
-                            <a href="#" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card feature-card">
-                        <img src="/images/desarrollo3.jpg" class="card-img-top" alt="Desarrollo 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Bosques del Norte</h5>
-                            <p class="card-text">Desarrollo premium con áreas verdes.</p>
-                            <a href="#" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="tourist-content">
+                <h2>MAZUNTE, PUEBLO MÁGICO</h2>
+                <p>Descubre Mazunte, el rincón mágico de Oaxaca donde la naturaleza y el mar se fusionan en perfecta armonía. Conocido por sus playas cristalinas, atardeceres de ensueño y un ambiente bohemio que enamora, Mazunte es mucho más que un destino, es una experiencia de vida.</p>
+                <a href="#" class="btn">CONOCE MÁS</a>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section" id="contacto">
-        <div class="container text-center">
-            <h2 class="mb-4">¿Listo para invertir en tu futuro?</h2>
-            <p class="mb-4">Contáctanos y descubre las mejores opciones de inversión</p>
-            <form class="row g-3 justify-content-center">
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="Nombre completo">
-                </div>
-                <div class="col-md-4">
-                    <input type="email" class="form-control" placeholder="Correo electrónico">
-                </div>
-                <div class="col-md-4">
-                    <input type="tel" class="form-control" placeholder="Teléfono">
-                </div>
-                <div class="col-12">
-                    <button type="submit" class="btn btn-light btn-lg">Solicitar información</button>
-                </div>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- Sección de Pasos -->
+    <section class="steps-section">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Nelva Bienes Raíces</h5>
-                    <p>Desarrolladora inmobiliaria líder en el mercado</p>
+            <h2 class="text-center">Pasos para invertir en tu próxima propiedad</h2>
+            <p class="text-center">Si estás listo para Invertir en comprar una propiedad, te guiamos a través de nuestro sencillo y claro proceso en tres pasos, asegurándonos de que cada decisión sea informada y segura:</p>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Haz una cita</h3>
+                    <p>Lo primero que debemos hacer es conocerte. Al agendar una cita, podremos escuchar tus necesidades, preferencias y el tipo de propiedad que deseas. Ya sea que busques una casa familiar, un terreno o una inversión, nos aseguramos de que todo quede claro desde el principio.</p>
                 </div>
-                <div class="col-md-4">
-                    <h5>Contacto</h5>
-                    <p>
-                        <i class="fas fa-phone"></i> (123) 456-7890<br>
-                        <i class="fas fa-envelope"></i> info@nelvabienesraices.com<br>
-                        <i class="fas fa-map-marker-alt"></i> Dirección de tu oficina
-                    </p>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Evalua la propiedad</h3>
+                    <p>Con base en lo que busques, te ayudamos a evaluar las propiedades disponibles. Analizamos el precio, la ubicación, el potencial de la propiedad y otros factores clave, guiándote en cada paso para que tomes la mejor decisión.</p>
                 </div>
-                <div class="col-md-4">
-                    <h5>Síguenos</h5>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                    </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Aplica para un crédito</h3>
+                    <p>Cuando encuentras el lote perfecto, gestionamos tu crédito sin revisión de buró de manera ágil y transparente. Nos aseguramos de que el proceso sea claro y sencillo, para que puedas comenzar a construir tus sueños sin preocupaciones ni complicaciones.</p>
                 </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-12 text-center">
-                    <p>&copy; 2025 Nelva Bienes Raíces. Todos los derechos reservados intento.</p>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Toma posesión inmediata</h3>
+                    <p>Al adquirir el lote perfecto, te ofrecemos la posibilidad de tomar posesión inmediata, gestionando tu crédito de manera ágil y sin revisión de buró. Nos encargamos de todo para que el proceso sea claro, sencillo y sin complicaciones, permitiéndote comenzar a construir tus sueños de inmediato.</p>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Sección de Promociones -->
+    <section class="promo-section">
+        <div class="container">
+            <h2 class="text-center">Promociones Especiales</h2>
+            <p class="text-center">Aprovecha nuestras ofertas exclusivas para invertir en tu próximo proyecto</p>
+            
+            <div class="promo-grid">
+                <div class="promo-card">
+                    <img src="https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Promoción 1">
+                    <div class="promo-card-content">
+                        <h3>Financiamiento especial</h3>
+                        <p>Hasta 5 años para pagar tu terreno con enganche del 20%</p>
+                    </div>
+                </div>
+                <div class="promo-card">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Promoción 2">
+                    <div class="promo-card-content">
+                        <h3>Paquete completo</h3>
+                        <p>Terreno + construcción con 10% de descuento en el diseño</p>
+                    </div>
+                </div>
+                <div class="promo-card">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Promoción 3">
+                    <div class="promo-card-content">
+                        <h3>Oferta de lanzamiento</h3>
+                        <p>Los primeros 10 lotes con 15% de descuento en preventa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div id="footer-container"></div>
+    <script src="template.js"></script>
 </body>
 </html>
