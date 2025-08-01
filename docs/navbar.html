@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NELVA Bienes Raíces - Navbar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        /* Barra superior negra */
+        .top-bar {
+            background-color: #000;
+            color: white;
+            padding: 12px 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .address {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+        }
+        
+        /* Barra de navegación principal */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            padding: 15px 30px;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #e7e7e7;
+            position: relative;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .nav-logo {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-logo img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #000;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #000;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        /* Menú hamburguesa para móviles */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        
+        /* Estilos responsivos */
+        @media (max-width: 1100px) {
+            .top-bar {
+                gap: 20px;
+                padding: 12px 20px;
+            }
+            
+            .top-bar-content {
+                gap: 20px;
+            }
+            
+            .contact-info {
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 850px) {
+            .top-bar {
+                gap: 15px;
+                padding: 10px 15px;
+            }
+            
+            .top-bar-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .contact-info {
+                gap: 10px;
+            }
+            
+            .address {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-container {
+                justify-content: center;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #f8f8f8;
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+                padding: 15px 0;
+                border-bottom: 1px solid #e7e7e7;
+                display: none;
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 12px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a:hover {
+                background-color: rgba(0,0,0,0.05);
+            }
+            
+            .nav-links a:after {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .top-bar {
+                padding: 8px 10px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 8px;
+                align-items: center;
+                width: 100%;
+            }
+            
+            .contact-info a, .address {
+                font-size: 13px;
+            }
+            
+            .navbar {
+                padding: 10px 15px;
+            }
+            
+            .nav-logo img {
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra superior con información de contacto -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="contact-info">
+                <a href="tel:29581199171">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>2958-119-9171</span>
+                </a>
+                <a href="mailto:marketing@nelvabienesraices.com">
+                    <i class="fas fa-envelope"></i>
+                    <span>marketing@nelvabienesraices.com</span>
+                </a>
+            </div>
+            <div class="address">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Adolfo Lopez Mateos 16, Loma Larga, 70900 San Pedro Pochutla, Oax.</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Barra de navegación principal -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="https://nelvabienesraices.com/wp-content/uploads/2025/01/cropped-MARCA_OFICIAL-1_Mesa-de-trabajo-1-1-1.png" alt="BSNELVA Logo">
+            </div>
+            
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="#">Nosotros</a>
+                <a href="#">Servicios</a>
+                <a href="#">Contacto</a>
+                <a href="#">Mas</a>
+                <a href="#">Atractivos</a>
+                <a href="#">Mapa Interactivo 一</a>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

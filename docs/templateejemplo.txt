@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Página</title>
+</head>
+<body>
+    <?php include 'navbar.html'; ?>
+    
+    
+    <!-- Tu contenido aquí -->
+
+    
+    <?php include 'footer.html'; ?>
+</body>
+</html>
