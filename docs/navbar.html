@@ -1,21 +1,28 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NELVA Bienes Raíces - Navbar</title>
+    <title>Mi Página</title>
+    <!-- Incluir Font Awesome para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Estilos generales */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
-        
-        /* Barra superior negra */
+
+        body {
+            overflow-x: hidden;
+            color: #022F4A;
+            background-color: #f9f9f9;
+        }
+
+        /* Estilos del navbar */
+        /* Barra superior negra - Ocultar en móviles */
         .top-bar {
-            background-color: #000;
+            background-color: #022F4A;
             color: white;
             padding: 12px 30px;
             display: flex;
@@ -97,7 +104,7 @@
         
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: #022F4A;
             font-size: 15px;
             font-weight: 500;
             text-transform: uppercase;
@@ -107,7 +114,7 @@
         }
         
         .nav-links a:hover {
-            color: #000;
+            color: #022F4A;
         }
         
         .nav-links a:after {
@@ -130,6 +137,8 @@
             display: none;
             cursor: pointer;
             font-size: 24px;
+            padding: 5px;
+            z-index: 1001;
         }
         
         /* Estilos responsivos */
@@ -173,17 +182,27 @@
         }
         
         @media (max-width: 768px) {
+            /* Ocultar barra superior en móviles */
+            .top-bar {
+                display: none;
+            }
+            
             .hamburger {
                 display: block;
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
             }
             
             .nav-container {
                 justify-content: center;
+                position: relative;
             }
             
             .nav-links {
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 80px;
                 left: 0;
                 width: 100%;
                 background-color: #f8f8f8;
@@ -193,7 +212,9 @@
                 padding: 15px 0;
                 border-bottom: 1px solid #e7e7e7;
                 display: none;
-                z-index: 1000;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
             }
             
             .nav-links.active {
@@ -201,13 +222,19 @@
             }
             
             .nav-links a {
-                padding: 12px 0;
+                padding: 15px 0;
                 width: 100%;
                 text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
             }
             
             .nav-links a:hover {
                 background-color: rgba(0,0,0,0.05);
+                color: #000;
             }
             
             .nav-links a:after {
@@ -216,21 +243,6 @@
         }
         
         @media (max-width: 480px) {
-            .top-bar {
-                padding: 8px 10px;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                gap: 8px;
-                align-items: center;
-                width: 100%;
-            }
-            
-            .contact-info a, .address {
-                font-size: 13px;
-            }
-            
             .navbar {
                 padding: 10px 15px;
             }
@@ -238,17 +250,38 @@
             .nav-logo img {
                 height: 40px;
             }
+            
+            .hamburger {
+                font-size: 20px;
+                right: 15px;
+            }
+            
+            .nav-links {
+                top: 70px;
+            }
         }
+
+        /* Resto de tus estilos... */
+        section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ... (mantén todos tus otros estilos existentes) ... */
     </style>
 </head>
 <body>
-    <!-- Barra superior con información de contacto -->
+    <!-- Barra superior con información de contacto (oculta en móviles) -->
     <div class="top-bar">
         <div class="top-bar-content">
             <div class="contact-info">
                 <a href="tel:29581199171">
                     <i class="fas fa-phone-alt"></i>
-                    <span>2958-119-9171</span>
+                    <span>958-119-9171</span>
                 </a>
                 <a href="mailto:marketing@nelvabienesraices.com">
                     <i class="fas fa-envelope"></i>
@@ -266,10 +299,10 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="https://nelvabienesraices.com/wp-content/uploads/2025/01/cropped-MARCA_OFICIAL-1_Mesa-de-trabajo-1-1-1.png" alt="BSNELVA Logo">
+                <img src="https://nelvabienesraices.com/wp-content/uploads/2025/01/cropped-MARCA_OFICIAL-1_Mesa-de-trabajo-1-1-1.png" alt="NELVA Logo">
             </div>
             
-            <div class="hamburger" onclick="toggleMenu()">
+            <div class="hamburger" id="hamburger">
                 <i class="fas fa-bars"></i>
             </div>
             
@@ -285,11 +318,42 @@
         </div>
     </nav>
 
+    <!-- Resto de tu contenido HTML... -->
+    
     <script>
-        function toggleMenu() {
+        // JavaScript para el menú hamburguesa
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
             const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
+            
+            // Toggle del menú al hacer clic en el icono hamburguesa
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                
+                // Cambiar el icono entre hamburguesa y X
+                if (navLinks.classList.contains('active')) {
+                    hamburger.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+            
+            // Cerrar el menú al hacer clic en un enlace
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Cerrar el menú al hacer clic fuera de él
+            document.addEventListener('click', function(event) {
+                if (!navLinks.contains(event.target) && !hamburger.contains(event.target)) {
+                    navLinks.classList.remove('active');
+                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
     </script>
 </body>
 </html>
