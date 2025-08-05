@@ -17,6 +17,7 @@
             overflow-x: hidden;
             color: #022F4A;
             background-color: #f9f9f9;
+            padding-top: 80px; /* Espacio para el navbar fijo */
         }
 
         /* Estilos del navbar */
@@ -76,7 +77,12 @@
             padding: 15px 30px;
             background-color: #f8f8f8;
             border-bottom: 1px solid #e7e7e7;
-            position: relative;
+            position: fixed; /* Cambiado a fixed */
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000; /* Asegura que esté por encima */
+            width: 100%;
         }
         
         .nav-container {
@@ -189,21 +195,20 @@
             
             .hamburger {
                 display: block;
-                position: absolute;
-                right: 20px;
-                top: 50%;
-                transform: translateY(-50%);
+                position: relative;
+                right: 0;
+                top: 0;
+                transform: none;
             }
             
             .nav-container {
-                justify-content: center;
-                position: relative;
+                justify-content: space-between;
             }
             
             .nav-links {
                 position: fixed;
                 top: 80px;
-                left: 0;
+                left: -100%;
                 width: 100%;
                 background-color: #f8f8f8;
                 flex-direction: column;
@@ -211,13 +216,14 @@
                 gap: 0;
                 padding: 15px 0;
                 border-bottom: 1px solid #e7e7e7;
-                display: none;
+                transition: left 0.3s ease;
                 box-shadow: 0 5px 10px rgba(0,0,0,0.1);
                 max-height: calc(100vh - 80px);
                 overflow-y: auto;
             }
             
             .nav-links.active {
+                left: 0;
                 display: flex;
             }
             
@@ -253,7 +259,6 @@
             
             .hamburger {
                 font-size: 20px;
-                right: 15px;
             }
             
             .nav-links {
@@ -270,8 +275,6 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-
-        /* ... (mantén todos tus otros estilos existentes) ... */
     </style>
 </head>
 <body>
@@ -321,20 +324,24 @@
     <!-- Resto de tu contenido HTML... -->
     
     <script>
-        // JavaScript para el menú hamburguesa
+        // JavaScript mejorado para el menú hamburguesa
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.getElementById('hamburger');
             const navLinks = document.getElementById('navLinks');
             
             // Toggle del menú al hacer clic en el icono hamburguesa
-            hamburger.addEventListener('click', function() {
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation(); // Evita que el evento se propague
                 navLinks.classList.toggle('active');
                 
                 // Cambiar el icono entre hamburguesa y X
+                const icon = hamburger.querySelector('i');
                 if (navLinks.classList.contains('active')) {
-                    hamburger.innerHTML = '<i class="fas fa-times"></i>';
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
                 } else {
-                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
                 }
             });
             
@@ -342,15 +349,19 @@
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', function() {
                     navLinks.classList.remove('active');
-                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
                 });
             });
             
             // Cerrar el menú al hacer clic fuera de él
             document.addEventListener('click', function(event) {
-                if (!navLinks.contains(event.target) && !hamburger.contains(event.target)) {
+                if (!navLinks.contains(event.target)) {
                     navLinks.classList.remove('active');
-                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
                 }
             });
         });

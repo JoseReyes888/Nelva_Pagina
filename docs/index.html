@@ -438,37 +438,177 @@
                 aspect-ratio: 3/2; /* Proporción más cuadrada para móviles */
             }
         }
-        /* Sección turística */
-        .tourist-section {
-            padding: 100px 20px;
-            position: relative;
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+        
 
-        .tourist-content {
-            max-width: 800px;
+
+        /* Sección Turística Compacta y Escalable */
+        .destinations-section {
+            padding: 80px 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .destinations-container {
+            max-width: 1200px;
             margin: 0 auto;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 40px;
-            border-radius: 15px;
         }
-
-        .tourist-section h2 {
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
             font-size: 2.5rem;
-            margin-bottom: 20px;
+            color: #02304A;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
         }
-
-        .tourist-section p {
+        
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #3a7bd5, #00d2ff);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .section-header p {
             font-size: 1.1rem;
-            margin-bottom: 30px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
         }
-
         
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
         
+        .destination-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .destination-image {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .destination-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .destination-card:hover .destination-image img {
+            transform: scale(1.05);
+        }
+        
+        .destination-content {
+            padding: 25px;
+            background: white;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .destination-content h3 {
+            font-size: 1.5rem;
+            color: #02304A;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .destination-content h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #FEB818;
+        }
+        
+        .destination-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .destination-highlights {
+            margin: 15px 0;
+        }
+        
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 0.9rem;
+        }
+        
+        .highlight-icon {
+            width: 22px;
+            height: 22px;
+            background: rgba(254, 184, 24, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            flex-shrink: 0;
+            color: #FEB818;
+            font-size: 0.8rem;
+        }
+        
+        .destination-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: #02304A;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .destination-btn:hover {
+            background: #FEB818;
+            color: #02304A;
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .destinations-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
         
         /* Sección de pasos */
         
@@ -855,41 +995,122 @@
     </section>
 
 
-    <!-- Sección Turística -->
-    <section class="tourist-section" style="background-image: url('https://dappermagazine.mx/wp-content/uploads/2023/11/mazunte2.jpg')">
-        <div class="container">
-            <div class="tourist-content">
-                <h2>MAZUNTE, PUEBLO MÁGICO</h2>
-                <p>Descubre Mazunte, el rincón mágico de Oaxaca donde la naturaleza y el mar se fusionan en perfecta armonía. Conocido por sus playas cristalinas, atardeceres de ensueño y un ambiente bohemio que enamora, Mazunte es mucho más que un destino, es una experiencia de vida.</p>
-                <a href="#" class="btn">CONOCE MÁS</a>
+    <!-- Sección de Destinos Turísticos Compacta -->
+    <section class="destinations-section">
+        <div class="destinations-container">
+            <div class="section-header">
+                <h2>Destinos Turísticos Exclusivos</h2>
+                <p>Descubre los lugares más emblemáticos de Oaxaca donde tenemos desarrollos estratégicos para tu inversión</p>
             </div>
+            
+            <div class="destinations-grid">
+                <!-- Mazunte -->
+                <div class="destination-card">
+                    <div class="destination-image">
+                        <img src="images/inicio/mazunte.png" alt="Mazunte">
+                    </div>
+                    <div class="destination-content">
+                        <h3>Mazunte</h3>
+                        <p>Pueblo Mágico conocido por sus playas vírgenes, ambiente bohemio y espectaculares atardeceres frente al Pacífico.</p>
+                        
+                        <div class="destination-highlights">
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-umbrella-beach"></i>
+                                </div>
+                                <span>Playas vírgenes</span>
+                            </div>
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <span>Atardeceres únicos</span>
+                            </div>
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-tree"></i>
+                                </div>
+                                <span>Reserva natural</span>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="destination-btn">Ver fraccionamientos</a>
+                    </div>
+                </div>
+                
+                <!-- Santa María Tonameca -->
+                <div class="destination-card">
+                    <div class="destination-image">
+                        <img src="images/inicio/tonameca.png" alt="Santa María Tonameca">
+                    </div>
+                    <div class="destination-content">
+                        <h3>Santa María Tonameca</h3>
+                        <p>Combinación perfecta entre la tranquilidad de un pueblo auténtico y la cercanía a playas paradisíacas.</p>
+                        
+                        <div class="destination-highlights">
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-mountain"></i>
+                                </div>
+                                <span>Entorno natural</span>
+                            </div>
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-water"></i>
+                                </div>
+                                <span>Ríos y manglares</span>
+                            </div>
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                </div>
+                                <span>Ubicación estratégica</span>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="destination-btn">Ver fraccionamientos</a>
+                    </div>
+                </div>
+                
+                <!-- Salina Cruz -->
+                <div class="destination-card">
+                    <div class="destination-image">
+                        <img src="images/inicio/salinas.png" alt="Salina Cruz">
+                    </div>
+                    <div class="destination-content">
+                        <h3>Salina Cruz</h3>
+                        <p>Zona clave del Corredor Interoceánico con gran potencial de desarrollo económico y crecimiento urbano.</p>
+                        
+                        <div class="destination-highlights">
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-anchor"></i>
+                                </div>
+                                <span>Puerto estratégico</span>
+                            </div>
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <span>Zona en desarrollo</span>
+                            </div>
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <span>Equilibrio ecológico</span>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="destination-btn">Ver fraccionamientos</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Espacio para fácil adición de nuevos destinos -->
+            <!-- Simplemente agregar nuevas cards dentro del destinations-grid -->
         </div>
     </section>
-
-
-    <!-- Sección Turística -->
-    <section class="tourist-section" style="background-image: url('https://mediaim.expedia.com/destination/1/0db5629d4d3f4ed5f8d6985a7f856818.jpg')">
-        <div class="container">
-            <div class="tourist-content">
-                <h2>SANTA MARÍA TONAMECA</h2>
-                <p>Santa María Tonameca, un rincón mágico en la costa de Oaxaca, combina la tranquilidad de un pueblo auténtico con paisajes tropicales y playas cercanas como Ventanilla. Rodeado de montañas y ríos, es el lugar perfecto para conectar con la naturaleza y disfrutar de una calidad de vida única.</p>
-                <a href="#" class="btn">CONOCE MÁS</a>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Sección Turística -->
-    <section class="tourist-section" style="background-image: url('https://realestatemarket.com.mx/images/articles/146-corredor-interoceanico/154-salina-cruz-infraestructura-portuaria-de-calidad-mundial/159-rompeolas-en-las-salinas-de-marques1.jpg')">
-        <div class="container">
-            <div class="tourist-content">
-                <h2>SALINA CRUZ</h2>
-                <p>Salina Cruz, clave del Corredor Interoceánico, impulsa el desarrollo industrial en Oaxaca mientras busca un equilibrio con el cuidado ambiental. Junto a Santo Domingo Tehuantepec, combina progreso económico y sostenibilidad, creando oportunidades en un entorno estratégico y responsable.</p>
-                <a href="#" class="btn">CONOCE MÁS</a>
-            </div>
-        </div>
-    </section>
-
     
 
    <!-- Sección de Pasos Compacta -->
@@ -989,3 +1210,4 @@
     <script src="template.js"></script>
 </body>
 </html>
+
